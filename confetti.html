@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Confetti!</title>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2em;
+      color: #FF4081;
+    }
+    p {
+      font-size: 1.2em;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h1>Happy Birthday, %%FirstName%%! 🎉</h1>
+    <p>Click anywhere to celebrate!</p>
+  </div>
+
+  <!-- Canvas Confetti Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+  <script>
+    // Function to launch multiple bursts of confetti
+    function launchConfetti() {
+      // Launch several confetti bursts
+      const duration = 3 * 1000;  // 3 seconds of confetti
+      const end = Date.now() + duration;
+
+      (function frame() {
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: Math.random() - 0.2 }
+        });
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      })();
+    }
+
+    // Add event listener to launch confetti on click
+    document.body.addEventListener('click', launchConfetti);
+  </script>
+</body>
+</html>
